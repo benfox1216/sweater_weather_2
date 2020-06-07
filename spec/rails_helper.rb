@@ -36,7 +36,7 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 
 VCR.configure do |c|
-  c.cassette_library_dir = "vcr"
+  c.cassette_library_dir = "spec/fixtures/vcr_cassettes"
   c.hook_into :faraday
   c.configure_rspec_metadata!
   c.filter_sensitive_data('<GOOGLE_API_KEY>') { "#{ENV['GOOGLE_API_KEY']}" }

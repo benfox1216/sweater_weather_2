@@ -1,4 +1,4 @@
-class OpenweatherService
+class OpenWeatherService
   attr_reader :lat, :long
   
   def initialize(lat, long)
