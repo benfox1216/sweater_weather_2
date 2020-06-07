@@ -35,7 +35,6 @@ end
 
 group :test do
   gem 'rspec-rails'
-  gem 'rspec-rainbow'
   gem 'capybara'
   gem 'shoulda-matchers'
   gem 'simplecov'

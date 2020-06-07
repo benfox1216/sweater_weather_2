@@ -1,6 +1,6 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'simplecov'
-Simplecov.start
+SimpleCov.start
 
 require 'spec_helper'
 require 'faker'
@@ -34,6 +34,15 @@ rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
 end
+
+VCR.configure do |c|
+  c.cassette_library_dir = "vcr"
+  c.hook_into :faraday
+  c.configure_rspec_metadata!
+  c.filter_sensitive_data('<GOOGLE_API_KEY>') { "#{ENV['GOOGLE_API_KEY']}" }
+  c.filter_sensitive_data('<OPENWEATHER_API_KEY>') { "#{ENV['OPENWEATHER_API_KEY']}" }
+end
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

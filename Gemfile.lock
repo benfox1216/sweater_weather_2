@@ -135,10 +135,6 @@ GEM
       ffi (~> 1.0)
     regexp_parser (1.7.0)
     rexml (3.2.4)
-    rspec (3.9.0)
-      rspec-core (~> 3.9.0)
-      rspec-expectations (~> 3.9.0)
-      rspec-mocks (~> 3.9.0)
     rspec-core (3.9.2)
       rspec-support (~> 3.9.3)
     rspec-expectations (3.9.2)
@@ -155,8 +151,6 @@ GEM
       rspec-expectations (~> 3.9)
       rspec-mocks (~> 3.9)
       rspec-support (~> 3.9)
-    rspec-rainbow (0.2.1)
-      rspec (>= 2.14.0, < 4)
     rspec-support (3.9.3)
     rubocop (0.85.0)
       parallel (~> 1.10)
@@ -221,7 +215,6 @@ DEPENDENCIES
   puma (~> 3.7)
   rails (~> 5.1.7)
   rspec-rails
-  rspec-rainbow
   rubocop-rails
   shoulda-matchers
   simplecov
