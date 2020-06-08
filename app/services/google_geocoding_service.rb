@@ -2,8 +2,8 @@ class GoogleGeocodingService
   attr_reader :city_state
   
   def initialize(city_state)
-    @city = city_state.split(', ').first
-    @state = city_state.split(', ').last
+    @city = city_state.split(',').first
+    @state = city_state.split(',').last
   end
   
   def get_coords

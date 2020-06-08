@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://maps.googleapis.com/maps/api/geocode/json?address=Denver%2C+CO&key=<GOOGLE_API_KEY>
+    uri: https://maps.googleapis.com/maps/api/geocode/json?address=denver%2C+co&key=<GOOGLE_API_KEY>
     body:
       encoding: US-ASCII
       string: ''
@@ -17,7 +17,7 @@ http_interactions:
       content-type:
       - application/json; charset=UTF-8
       date:
-      - Sun, 07 Jun 2020 16:27:47 GMT
+      - Sun, 07 Jun 2020 18:29:57 GMT
       pragma:
       - no-cache
       expires:
@@ -37,7 +37,7 @@ http_interactions:
       x-frame-options:
       - SAMEORIGIN
       server-timing:
-      - gfet4t7; dur=47
+      - gfet4t7; dur=37
       alt-svc:
       - h3-27=":443"; ma=2592000,h3-25=":443"; ma=2592000,h3-T050=":443"; ma=2592000,h3-Q050=":443";
         ma=2592000,h3-Q049=":443"; ma=2592000,h3-Q048=":443"; ma=2592000,h3-Q046=":443";
@@ -106,5 +106,5 @@ http_interactions:
            ],
            "status" : "OK"
         }
-  recorded_at: Sun, 07 Jun 2020 16:27:47 GMT
+  recorded_at: Sun, 07 Jun 2020 18:29:57 GMT
 recorded_with: VCR 6.0.0

@@ -35,6 +35,8 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 
+# VCR.turn_off!(ignore_cassettes: true)
+
 VCR.configure do |c|
   c.cassette_library_dir = "spec/fixtures/vcr_cassettes"
   c.hook_into :faraday

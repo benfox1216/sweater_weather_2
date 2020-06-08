@@ -13,7 +13,7 @@ class OpenWeatherService
   private
   
   def response
-    uri = "data/2.5/onecall?lat=#{@lat}&lon=#{@long}&appid=#{ENV['OPENWEATHER_API_KEY']}"
+    uri = "data/2.5/onecall?lat=#{@lat}&lon=#{@long}&units=imperial&appid=#{ENV['OPENWEATHER_API_KEY']}"
     Faraday.get("https://api.openweathermap.org/#{uri}")
   end
 end
