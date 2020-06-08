@@ -5,6 +5,6 @@ describe "Google Directions API" do
     response = GoogleDirectionsService.new('denver,co', 'pueblo,co').get_directions
     expected = "1 hour 48 mins"
 
-    expect(response[:routes].first[:legs].first[:distance][:duration]).to eq(expected)
+    expect(response[:routes].first[:legs].first[:duration][:text]).to eq(expected)
   end
 end
