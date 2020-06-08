@@ -13,7 +13,14 @@ class GoogleGeocodingService
   private
   
   def response
-    uri = "maps/api/geocode/json?address=#{@city},+#{@state}&key=#{ENV['GOOGLE_API_KEY']}"
-    Faraday.get("https://maps.googleapis.com/#{uri}")
+    conn.get("maps/api/geocode/json?") do |r|
+      r.headers[:content_type] = 'application/json'
+      r.params[:address] = "#{@city},+#{@state}"
+      r.params[:key] = "#{ENV['GOOGLE_API_KEY']}"
+    end
+  end
+  
+  def conn
+    Faraday.new("https://maps.googleapis.com/")
   end
 end

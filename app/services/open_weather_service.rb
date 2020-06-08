@@ -13,7 +13,16 @@ class OpenWeatherService
   private
   
   def response
-    uri = "data/2.5/onecall?lat=#{@lat}&lon=#{@long}&units=imperial&appid=#{ENV['OPENWEATHER_API_KEY']}"
-    Faraday.get("https://api.openweathermap.org/#{uri}")
+    conn.get("data/2.5/onecall?") do |r|
+      r.headers[:content_type] = 'application/json'
+      r.params[:lat] = "#{@lat}"
+      r.params[:lon] = "#{@long}"
+      r.params[:units] = 'imperial'
+      r.params[:appid] = "#{ENV['OPENWEATHER_API_KEY']}"
+    end
+  end
+  
+  def conn
+    Faraday.new("https://api.openweathermap.org/")
   end
 end
