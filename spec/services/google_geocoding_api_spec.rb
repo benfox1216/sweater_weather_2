@@ -1,10 +1,13 @@
 require 'rails_helper'
 
-describe "Google Directions API" do
+describe "Google Geocoding API" do
   it "returns expected response", :vcr do
-    response = GoogleDirectionsService.new('denver,co', 'pueblo,co').get_directions
-    expected = "1 hour 48 mins"
+    response = GoogleGeocodingService.new('denver,co')
+    expected = {
+       lat: 39.7392358,
+       lng: -104.990251
+    }
 
-    expect(response[:routes].first[:legs].first[:duration][:text]).to eq(expected)
+    expect(response.get_coords[:results].first[:geometry][:location]).to eq(expected)
   end
 end
