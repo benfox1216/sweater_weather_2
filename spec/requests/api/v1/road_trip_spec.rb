@@ -28,7 +28,8 @@ describe "Road Trip API" do
     
     json = JSON.parse(response.body, symbolize_names: true)
     
-    expect(json[:data][:attributes][:email]).to eq("#{user.email}")
-    expect(json[:data][:attributes][:api_key]).to eq("#{user.api_key}")
+    expect(json[:data][:attributes].count).to eq(4)
+    expect(json[:data][:attributes][:arrival_forecast].count).to eq(2)
+    expect(json[:data][:attributes][:travel_time]).to eq("1 hour 48 mins")
   end
 end
