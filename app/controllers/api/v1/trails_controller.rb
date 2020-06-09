@@ -1,25 +1,16 @@
 class Api::V1::TrailsController < ApplicationController
   def show
-    google_geocoding_response = GoogleGeocodingService.new(params[:location])
-    coordinates = google_geocoding_response.
-      get_coords[:results].first[:geometry][:location]
-      
+    coordinates = get_coordinates
     lat = coordinates[:lat]
     lng = coordinates[:lng]
     
-    open_weather_response = OpenWeatherService.new(lat, lng)
-    weather = open_weather_response.get_weather_data[:current]
-    
-    summary = weather[:weather].first[:description]
-    temp = weather[:temp]
-    
+    weather = get_weather(lat, lng)
     forecast = {
-      summary: summary,
-      temperature: temp
+      summary: weather[:weather].first[:description],
+      temperature: weather[:temp]
     }
     
-    trails_response = HikingProjectService.new(lat, lng)
-    trails = trails_response.get_trails_info[:trails]
+    trails = get_trails(lat, lng)
     
     all_trails = trails.map do |trail|
       mapquest_response = MapquestService.new(params[:location], trail[:location])
@@ -37,5 +28,23 @@ class Api::V1::TrailsController < ApplicationController
     hiking_info = Hiking.new(params[:location], forecast, all_trails)
     
     render json: TrailSerializer.new(hiking_info)
+  end
+  
+  private
+  
+  def get_coordinates
+    google_geocoding_response = GoogleGeocodingService.new(params[:location])
+    coordinates = google_geocoding_response.
+      get_coords[:results].first[:geometry][:location]
+  end
+  
+  def get_weather(lat, lng)
+    open_weather_response = OpenWeatherService.new(lat, lng)
+    weather = open_weather_response.get_weather_data[:current]
+  end
+  
+  def get_trails(lat, lng)
+    trails_response = HikingProjectService.new(lat, lng)
+    trails = trails_response.get_trails_info[:trails]
   end
 end
