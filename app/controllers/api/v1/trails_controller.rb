@@ -12,5 +12,8 @@ class Api::V1::TrailsController < ApplicationController
     
     temp = weather[:temp]
     forecast = weather[:weather].first[:description]
+    
+    trails_response = HikingProjectService.new(lat, lng)
+    trails = trails_response.get_trails_info[:trails]
   end
 end
