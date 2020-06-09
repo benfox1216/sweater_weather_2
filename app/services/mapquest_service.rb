@@ -15,8 +15,8 @@ class MapquestService
   def response
     conn.get("directions/v2/route?") do |r|
       r.params[:key] = "#{ENV['MAPQUEST_API_KEY']}"
-      r.params[:from]
-      r.params[:to]
+      r.params[:from] = "#{@origin}"
+      r.params[:to] = "#{@destination}"
     end
   end
   

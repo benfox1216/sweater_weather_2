@@ -16,17 +16,19 @@ class Api::V1::TrailsController < ApplicationController
     trails_response = HikingProjectService.new(lat, lng)
     trails = trails_response.get_trails_info[:trails]
     
-    mapquest_response = MapquestService.new(params[:location], )
-    
     all_trails = trails.map do |trail|
+      mapquest_response = MapquestService.new(params[:location], trail[:location])
+      distance = mapquest_response.get_distance[:route][:distance]
+      
       {
         name: trail[:name],
         summary: trail[:summary],
         difficulty: trail[:difficulty],
-        location: trail[:location]
+        location: trail[:location],
+        distance_to_trail: distance
       }
     end
     
-    
+    binding.pry
   end
 end
