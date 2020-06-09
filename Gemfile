@@ -25,6 +25,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'fast_jsonapi'
   gem 'pry'
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -38,7 +39,6 @@ group :test do
   gem 'capybara'
   gem 'shoulda-matchers'
   gem 'simplecov'
-  gem 'factory_bot_rails'
   gem 'faker'
   gem 'vcr'
 end

@@ -4,7 +4,8 @@ describe "Forecast API" do
   it "returns the current & 7-day forecast in JSON format", :vcr do
     get '/api/v1/forecast?location=denver,co'
 
-    expect(response.content_type).to eq 'application/json'
+    expect(response.content_type).to eq('application/json')
+    expect(response.status).to eq(200)
     expect(response).to be_successful
     
     json = JSON.parse(response.body, symbolize_names: true)

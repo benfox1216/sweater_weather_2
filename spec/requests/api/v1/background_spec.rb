@@ -4,7 +4,8 @@ describe "Background API" do
   it "returns a picture from the destination city", :vcr do
     get '/api/v1/backgrounds?location=pueblo,co'
 
-    expect(response.content_type).to eq 'application/json'
+    expect(response.content_type).to eq('application/json')
+    expect(response.status).to eq(200)
     expect(response).to be_successful
     
     json = JSON.parse(response.body, symbolize_names: true)
