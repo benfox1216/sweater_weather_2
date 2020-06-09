@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe "Road Trip API" do
-  it "returns the desired info", :vcr do
+  xit "returns the desired info", :vcr do
     password = SecureRandom.hex(4)
     key = SecureRandom.hex
     
