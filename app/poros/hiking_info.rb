@@ -10,13 +10,10 @@ class HikingInfo
     lat = coordinates[:lat]
     lng = coordinates[:lng]
     
-    weather = get_weather(lat, lng)
-    forecast = format_weather(weather)
-    
+    forecast = get_weather(lat, lng)
     trails = get_trails(lat, lng)
-    all_trails = format_trails(trails)
     
-    Hiking.new(@location, forecast, all_trails)
+    Hiking.new(@location, forecast, trails)
   end
   
   private
@@ -30,9 +27,7 @@ class HikingInfo
   def get_weather(lat, lng)
     open_weather_response = OpenWeatherService.new(lat, lng)
     weather = open_weather_response.get_weather_data[:current]
-  end
-  
-  def format_weather(weather)
+    
     {
       summary: weather[:weather].first[:description],
       temperature: weather[:temp]
@@ -42,6 +37,8 @@ class HikingInfo
   def get_trails(lat, lng)
     trails_response = HikingProjectService.new(lat, lng)
     trails = trails_response.get_trails_info[:trails]
+    
+    format_trails(trails)
   end
   
   def format_trails(trails)
