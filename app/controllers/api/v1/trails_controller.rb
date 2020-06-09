@@ -10,8 +10,13 @@ class Api::V1::TrailsController < ApplicationController
     open_weather_response = OpenWeatherService.new(lat, lng)
     weather = open_weather_response.get_weather_data[:current]
     
+    summary = weather[:weather].first[:description]
     temp = weather[:temp]
-    forecast = weather[:weather].first[:description]
+    
+    forecast = {
+      summary: summary,
+      temperature: temp
+    }
     
     trails_response = HikingProjectService.new(lat, lng)
     trails = trails_response.get_trails_info[:trails]
@@ -29,6 +34,8 @@ class Api::V1::TrailsController < ApplicationController
       }
     end
     
-    binding.pry
+    hiking_info = Hiking.new(params[:location], forecast, all_trails)
+    
+    render json: TrailsSerializer.new(hiking_info)
   end
 end
