@@ -6,7 +6,21 @@ class MapquestService
     @destination = destination
   end
   
-  # def get_
-  #
-  # end
+  def get_distance
+    JSON.parse(response.body, symbolize_names: true)
+  end
+  
+  private
+  
+  def response
+    conn.get("directions/v2/route?") do |r|
+      r.params[:key] = "#{ENV['MAPQUEST_API_KEY']}"
+      r.params[:from]
+      r.params[:to]
+    end
+  end
+  
+  def conn
+    Faraday.new("http://www.mapquestapi.com/")
+  end
 end
