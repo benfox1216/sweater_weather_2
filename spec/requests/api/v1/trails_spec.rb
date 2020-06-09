@@ -6,6 +6,6 @@ describe "Trails API" do
     expect(response).to be_successful
     
     json = JSON.parse(response.body, symbolize_names: true)
-    expect(json).to eq("")
+    expect(json[:data][:attributes][:trails].count).to eq(10)
   end
 end

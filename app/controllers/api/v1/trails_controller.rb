@@ -36,6 +36,6 @@ class Api::V1::TrailsController < ApplicationController
     
     hiking_info = Hiking.new(params[:location], forecast, all_trails)
     
-    render json: TrailsSerializer.new(hiking_info)
+    render json: TrailSerializer.new(hiking_info)
   end
 end
