@@ -2,12 +2,14 @@ require 'rails_helper'
 
 describe "Registration API" do
   it "creates a user, returns correct data" do
+    random = SecureRandom.hex(4)
+    
     headers = {"Accept" => "application/json"}
     
     params = {
-      email: "whatever@example.com",
-      password: "password",
-      password_confirmation: "password"
+      email: Faker::Internet.email,
+      password: random,
+      password_confirmation: random,
     }
     
     post "/api/v1/users", params: params, headers: headers
@@ -18,7 +20,7 @@ describe "Registration API" do
     
     json = JSON.parse(response.body, symbolize_names: true)
     
-    expect(json[:data][:attributes][:email]).to eq("whatever@example.com")
+    expect(json[:data][:attributes][:email]).to eq(User.last.email)
     expect(json[:data][:attributes][:api_key]).to eq(User.last.api_key)
   end
 end

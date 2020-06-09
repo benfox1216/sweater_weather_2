@@ -1,25 +1,27 @@
 require 'rails_helper'
 
-describe "Login API" do
-  it "finds a user, returns correct data" do
+describe "Road Trip API" do
+  it "returns the desired info", :vcr do
     password = SecureRandom.hex(4)
+    key = SecureRandom.hex
     
     user = User.create!(
       email: Faker::Internet.email,
       password: password,
       password_confirmation: password,
-      api_key: SecureRandom.hex
+      api_key: key
     )
     
     headers = {"Accept" => "application/json"}
     
     params = {
-      email: "#{user.email}",
-      password: "#{user.password}"
+      origin: "Denver,CO",
+      destination: "Pueblo,CO",
+      api_key: key
     }
     
-    post "/api/v1/sessions", params: params, headers: headers
-
+    post "/api/v1/road_trip", params: params, headers: headers
+    
     expect(response.content_type).to eq('application/json')
     expect(response.status).to eq(200)
     expect(response).to be_successful

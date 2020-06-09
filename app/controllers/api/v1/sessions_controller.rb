@@ -1,5 +1,3 @@
-require 'securerandom'
-
 class Api::V1::SessionsController < ApplicationController
   def show
     user = User.find_user(params[:email], params[:password])
