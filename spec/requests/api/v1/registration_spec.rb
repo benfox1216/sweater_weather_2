@@ -12,7 +12,7 @@ describe "Registration API" do
       password_confirmation: random,
     }
     
-    post "/api/v1/users", params: params, headers: headers
+    post "/api/v1/users", params: params, headers: headers, as: :json
 
     expect(response.content_type).to eq('application/json')
     expect(response.status).to eq(201)

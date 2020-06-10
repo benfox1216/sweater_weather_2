@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "Forecast API" do
   it "returns the current & 7-day forecast in JSON format", :vcr do
-    get '/api/v1/forecast?location=denver,co'
+    get '/api/v1/forecast?location=denver,co', as: :json
 
     expect(response.content_type).to eq('application/json')
     expect(response.status).to eq(200)

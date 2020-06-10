@@ -5,7 +5,7 @@ class Api::V1::SessionsController < ApplicationController
     if user.class == User
       render json: UsersSerializer.new(user)
     else
-      #
+      # render json: {status: 400}, status: 400
     end
   end
 end

@@ -4,7 +4,7 @@ class User < ApplicationRecord
   end
   
   def self.api_key?(api_key)
-    return true if User.where(api_key: api_key)
+    return true if User.where(api_key: api_key) != []
     false
   end
 end

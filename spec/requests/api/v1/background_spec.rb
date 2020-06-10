@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "Background API" do
   it "returns a picture from the destination city", :vcr do
-    get '/api/v1/backgrounds?location=pueblo,co'
+    get '/api/v1/backgrounds?location=pueblo,co', as: :json
 
     expect(response.content_type).to eq('application/json')
     expect(response.status).to eq(200)

@@ -18,7 +18,7 @@ describe "Login API" do
       password: "#{user.password}"
     }
     
-    post "/api/v1/sessions", params: params, headers: headers
+    post "/api/v1/sessions", params: params, headers: headers, as: :json
 
     expect(response.content_type).to eq('application/json')
     expect(response.status).to eq(200)

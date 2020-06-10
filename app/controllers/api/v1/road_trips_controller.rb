@@ -18,7 +18,7 @@ class Api::V1::RoadTripsController < ApplicationController
       road_trip = RoadTrip.new(params[:origin], params[:destination], travel_time, weather)
       render json: RoadTripSerializer.new(road_trip)
     else
-      # 401
+      render json: {error: "Unauthorized", status: 401}, status: 401
     end
   end
 end
