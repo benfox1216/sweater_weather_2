@@ -38,7 +38,8 @@ describe "Registration API" do
     expect(response.status).to eq(400)
     
     json = JSON.parse(response.body, symbolize_names: true)
-    expect(json).to eq({error: "Passwords do not match", status: 400})
+    expect(json).to eq({error:
+      "Passwords do not match, or a field was left empty", status: 400})
   end
   
   it "returns correct error when email is taken" do
@@ -65,6 +66,18 @@ describe "Registration API" do
   end
   
   it "returns correct error when there is a missing field" do
+    params = {
+      email: Faker::Internet.email,
+      password_confirmation: @password
+    }
     
+    post "/api/v1/users", params: params, headers: @headers, as: :json
+
+    expect(response.content_type).to eq('application/json')
+    expect(response.status).to eq(400)
+    
+    json = JSON.parse(response.body, symbolize_names: true)
+    expect(json).to eq({error:
+      "Passwords do not match, or a field was left empty", status: 400})
   end
 end
