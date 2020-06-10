@@ -49,7 +49,7 @@ describe "Login API" do
     expect(json).to eq({error: "Email and/or password do not match", status: 400})
   end
   
-  it "returns 400 status with incorrect password, w/ explanation" do
+  it "returns 400 status with wrong email, w/ explanation" do
     headers = {"Accept" => "application/json"}
     
     params = {
