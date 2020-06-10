@@ -3,7 +3,8 @@ class GoogleDirectionsService
   
   def initialize(origin, destination)
     @origin = "#{origin.split(',').first}+#{origin.split(',').last}"
-    @destination = "#{destination.split(',').first}+#{destination.split(',').last}"
+    @destination = "#{destination.split(',').first}+"+
+      "#{destination.split(',').last}"
   end
   
   def get_distance

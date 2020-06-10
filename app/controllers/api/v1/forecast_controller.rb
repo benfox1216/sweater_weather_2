@@ -9,6 +9,7 @@ class Api::V1::ForecastController < ApplicationController
     coords = get_coords
     forecast = OpenWeatherService.new(coords[:lat], coords[:lng])
     info = forecast.get_weather_data
+    
     Forecast.new(info, params[:location])
   end
   

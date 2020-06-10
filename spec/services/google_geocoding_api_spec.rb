@@ -8,6 +8,7 @@ describe "Google Geocoding API" do
        lng: -104.990251
     }
 
-    expect(response.get_coords[:results].first[:geometry][:location]).to eq(expected)
+    expect(response.get_coords[:results]
+      .first[:geometry][:location]).to eq(expected)
   end
 end

@@ -8,7 +8,8 @@ class TripData
   def get_data
     @coords = get_coords
     @travel_time = get_travel_time
-    RoadTrip.new(@params[:origin], @params[:destination], @travel_time, get_weather)
+    RoadTrip.new(@params[:origin], @params[:destination],
+      @travel_time, get_weather)
   end
   
   private
@@ -19,8 +20,10 @@ class TripData
   end
   
   def get_travel_time
-    directions_response = GoogleDirectionsService.new(@params[:origin], @params[:destination])
-    directions_response.get_distance[:routes].first[:legs].first[:duration][:text]
+    directions_response =
+      GoogleDirectionsService.new(@params[:origin], @params[:destination])
+    directions_response.get_distance[:routes].first[:legs]
+      .first[:duration][:text]
   end
   
   def get_weather
@@ -28,7 +31,8 @@ class TripData
     forecast = OpenWeatherService.new(@coords[:lat], @coords[:lng])
     {
       temp: forecast.get_weather_data[:hourly][hours-1][:temp],
-      weather: forecast.get_weather_data[:hourly][hours-1][:weather].first[:description]
+      weather: forecast.get_weather_data[:hourly][hours-1][:weather]
+        .first[:description]
     }
   end
 end
