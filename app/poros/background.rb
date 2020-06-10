@@ -2,7 +2,7 @@ class Background
   attr_accessor  :id, :pic
   
   def initialize(pic)
-    @id =  1
+    @id =  nil
     @pic = pic
   end
 end

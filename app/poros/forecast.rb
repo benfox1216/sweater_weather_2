@@ -2,7 +2,7 @@ class Forecast
   attr_reader :id, :current, :hourly, :daily
   
   def initialize(info, location)
-    @id =  1
+    @id =  nil
     @current = {
       location: location,
       date_time: Time.now.strftime('%I:%M %p, %m/%d'),

@@ -12,7 +12,7 @@ describe "Background API" do
     
     expected = 'https://images.unsplash.com/photo-1591294071573-f0e27629d46c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjE0MDg5N30'
     
-    expect(json[:data][:attributes].count).to eq(2)
+    expect(json[:data][:attributes].count).to eq(1)
     expect(json[:data][:attributes][:pic]).to eq(expected)
   end
 end

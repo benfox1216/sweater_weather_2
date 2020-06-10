@@ -10,7 +10,7 @@ describe "Forecast API" do
     
     json = JSON.parse(response.body, symbolize_names: true)
     
-    expect(json[:data][:attributes].count).to eq(4)
+    expect(json[:data][:attributes].count).to eq(3)
     expect(json[:data][:attributes][:current].count).to eq(12)
     expect(json[:data][:attributes][:hourly].count).to eq(8)
     expect(json[:data][:attributes][:daily].count).to eq(5)
