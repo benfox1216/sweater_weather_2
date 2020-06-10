@@ -3,10 +3,16 @@ class Api::V1::UsersController < ApplicationController
     user = User.new(permit_params)
     user.api_key = SecureRandom.hex
     
-    if user.save
+    if params[:password] != params[:password_confirmation]
+      render json: {error: "Passwords do not match", status: 400},
+        status: 400
+    elsif User.email_taken?(params[:email])
+      render json: {error: "Email is taken", status: 400},
+        status: 400
+    elsif user.save
       render json: UsersSerializer.new(user), status: :created
     else
-      # render :json {error: "passwords don't match"}, status: :bad_request
+      #
     end
   end
   

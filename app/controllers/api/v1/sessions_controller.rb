@@ -5,7 +5,8 @@ class Api::V1::SessionsController < ApplicationController
     if user.class == User
       render json: UsersSerializer.new(user)
     else
-      # render json: {status: 400}, status: 400
+      render json: {error: "Email and/or password do not match", status: 400},
+        status: 400
     end
   end
 end
