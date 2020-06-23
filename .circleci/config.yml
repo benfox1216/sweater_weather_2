@@ -9,5 +9,5 @@ jobs:
     executor: ruby/default
     steps:
       - checkout
-      - gem install gem install bundler:2.1.4
+      - gem install bundler:2.1.4
       - ruby/bundle-install
