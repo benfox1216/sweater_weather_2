@@ -12,6 +12,7 @@ gem 'rubocop-rails'
 gem 'figaro'
 gem 'faraday'
 gem 'fast_jsonapi'
+gem 'bundler'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
