@@ -8,3 +8,5 @@ class Api::V1::RoadTripsController < ApplicationController
     end
   end
 end
+
+#
